@@ -1,71 +1,28 @@
 import csv
-import numpy as np
 import os
 import sys
 from sklearn.preprocessing import MinMaxScaler
-import matplotlib.pyplot as plt
-import math
 
-def correlated(dimensions, samples):
-    correlation_strength = 0.8
-    # Generate a covariance matrix with correlation_strength
-    cov_matrix = np.ones((dimensions, dimensions)) * correlation_strength
-    np.fill_diagonal(cov_matrix, 1.0)  # Set diagonal elements to 1
-
-    # Generate correlated data using the covariance matrix
-    data = np.random.multivariate_normal(mean=np.zeros(dimensions), cov=cov_matrix, size=samples)
-
-    return data
-
-def anticorrelated(dimensions, samples):
-
-    anticorrelation_strength = 0.8
-
-    # Generate a covariance matrix with anticorrelation_strength
-    cov_matrix = np.ones((dimensions, dimensions)) * anticorrelation_strength
-    np.fill_diagonal(cov_matrix, 1.0)  # Set diagonal elements to 1
-
-    # Generate correlated data using the covariance matrix
-    data = np.random.multivariate_normal(mean=np.zeros(dimensions), cov=cov_matrix, size=samples)
-
-    # Invert even dimensions to make them anticorrelated
-    for d in range(dimensions):
-        if d%2 == 0:
-            data[:, d] = data[:, d].max() - data[:, d]
-
-    return data
-def normal(dimensions, samples):
-
-    data = np.random.randn(samples, dimensions)
-    return data
-
-def uniform(dimensions, samples):
-
-    data = np.random.uniform(size=(samples, dimensions))
-    return data
+from distributions import correlated, anticorrelated, normal, uniform
+from plot_results import plot_pairs
 
 
-def plot_function(data, distribution):
-    dimensions = data.shape[1]
+def generate_data(distribution, dimensions, samples, plot):
+    """
+    Generate synthetic data based on the specified distribution and save it to a CSV file.
+    The format of the name of the CSV file is "{distribution}_data_{dimensions}D_{samples}S".
+    Example for 1000, normal, 4-dimensional data : "normal_data_4D_1000S"
 
-    # Plot scatter plots for all pairs of dimensions
-    fig, axes = plt.subplots(dimensions, dimensions, figsize=(12, 12))
-    fig.suptitle(f"Scatter Plots for All Pairs for {distribution} distribution")
+    Args:
+        distribution (str): The type of data distribution to generate. Choose from:
+                            correlated, anticorrelated, normal, uniform.
+        dimensions (int): The number of dimensions for the generated data.
+        samples (int): The number of data samples to generate.
+        plot (bool): If True, a plot of the distribution between each pair of dimensions will be created.
 
-    for i in range(dimensions):
-        for j in range(dimensions):
-            if i == j:
-                axes[i, j].hist(data[:, i], bins=20, color='skyblue', alpha=0.7)
-                axes[i, j].set_title(f'Dimension {i + 1}')
-            else:
-                axes[i, j].scatter(data[:, i], data[:, j], alpha=0.5)
-                axes[i, j].set_xlabel(f'Dimension {i + 1}')
-                axes[i, j].set_ylabel(f'Dimension {j + 1}')
-
-    plt.tight_layout(rect=[0, 0, 1, 0.96])  # Adjust layout to prevent clipping of title
-    plt.show()
-
-def generate_data(distribution, dimensions, samples, plot_sample):
+    Returns:
+        None
+    """
     if distribution == "correlated":
         data = correlated(dimensions, samples)
     elif distribution == "anticorrelated":
@@ -94,22 +51,26 @@ def generate_data(distribution, dimensions, samples, plot_sample):
     print(f"Dataset with {distribution} distribution, {dimensions} dimensions and"
           f" {samples} samples was successfully created!")
 
-    # Plot a sample of the dataset if plot_pairs is True
-    if plot_pairs:
-        plot_function(normalized_data, distribution)
+    # Plot the distribution between each pair of dimensions if plot is True
+    if plot:
+        plot_pairs(normalized_data, distribution)
 
 
 if __name__ == "__main__":
     if len(sys.argv) not in (4, 5):
-        print("Usage: python data_generator.py <distribution> <dimensions> <samples> [--plot_pairs]")
+        print("Usage: python data_generator.py <distribution> <dimensions> <samples> [--plot]")
         sys.exit(1)
 
     distribution = sys.argv[1]
     dimensions = int(sys.argv[2])
     samples = int(sys.argv[3])
 
-    plot_pairs = False
-    if len(sys.argv) == 5 and sys.argv[4] == "--plot_pairs":
-        plot_pairs = True
+    plot = False
+    if len(sys.argv) == 5:
+        if sys.argv[4] == "--plot":
+            plot = True
+        else:
+            print("Usage: python data_generator.py <distribution> <dimensions> <samples> [--plot]")
+            sys.exit(1)
 
-    generate_data(distribution, dimensions, samples, plot_pairs)
+    generate_data(distribution, dimensions, samples, plot)
