@@ -16,7 +16,7 @@ def create_subplot_layout(dimensions):
     return int(rows), int(columns)
 
 
-def plot_pairs(data, distribution):
+def plot_pairs(data, distribution, skyline_set=None):
 
     dimensions = data.shape[1]
     rows, cols = create_subplot_layout(dimensions)
@@ -29,13 +29,25 @@ def plot_pairs(data, distribution):
     for i in range(dimensions):
         for j in range(i + 1, dimensions):
             row_counter, col_counter = divmod(counter, cols)
+            if rows == 1 and cols == 1:
+                ax = axes
+            elif rows == 1:
+                ax = axes[col_counter]
+            else:
+                ax = axes[row_counter, col_counter]
 
-            axes[row_counter, col_counter].scatter(data[:, i], data[:, j], alpha=0.5)
-            axes[row_counter, col_counter].set_xlabel(f'Dimension {i + 1}')
-            axes[row_counter, col_counter].set_ylabel(f'Dimension {j + 1}')
+            ax.scatter(data[:, i], data[:, j], alpha=0.5)
+            ax.set_xlabel(f'Dimension {i + 1}')
+            ax.set_ylabel(f'Dimension {j + 1}')
+
+            # Plot skyline points if they are provided
+            if skyline_set is not None:
+                # Extract the specific dimensions for skyline points
+                skyline_points = np.array(list(skyline_set))
+                ax.scatter(skyline_points[:, i], skyline_points[:, j], color='red')
 
             # Add grid to each subplot
-            axes[row_counter, col_counter].grid(True, linestyle='--', alpha=0.7)
+            ax.grid(True, linestyle='--', alpha=0.7)
 
             counter += 1
 
