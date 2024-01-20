@@ -1,10 +1,12 @@
-import SkylineAlgorithms.{alsAlgorithm, sfsAlgorithm}
+import SkylineAlgorithms.{ALS_SFS_algorithm, ALS_algorithm, countSkylinePoints}
 import org.apache.hadoop.security.UserGroupInformation
-
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.rdd.RDD
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.{SparkConf, SparkContext}
+import java.io.{File, FileWriter, BufferedWriter, PrintWriter}
+
+import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 
 object Main {
 
@@ -15,8 +17,9 @@ object Main {
     UserGroupInformation.setLoginUser(UserGroupInformation.createRemoteUser("test"))
 
     // Define configuration variables
+    val cores = 16
     val appName = "DWS Dominance Based Queries"
-    val masterUrl = "local[16]" // Use local[*] to utilize all available cores on local machine
+    val masterUrl = "local["+cores+"]" // Use local[*] to utilize all available cores on local machine
 
     // Configure Spark
     val sparkConf = new SparkConf()
@@ -31,48 +34,90 @@ object Main {
     val uiUrl = sc.uiWebUrl.getOrElse("Spark UI URL not available")
     println(s"Spark UI available at: $uiUrl")
 
+
+    // Prepare a mutable collection to gather your statistics
+    val resultsList = ListBuffer[Array[Any]]()
+
     // Define the dataset parameters
-    val distribution = "normal"
-    val dimensions = 4
-    val samples = 10000000
+    //val distribution = "anticorrelated"
+    //val dimensions = 6
+    //val samples = 10000000
+    val available_distributions = List("normal", "uniform", "correlated", "anticorrelated")
+    val available_dimensions = List(7)
+    val available_samples = List(10000, 100000, 1000000, 10000000)
 
-    // Construct the file name based on the variables
-    val fileName = s"data/${distribution}_data_${dimensions}D_${samples}S.csv"
+    for (distribution <- available_distributions) {
+      for (dimensions <- available_dimensions) {
+        for (samples <- available_samples) {
 
-    // Load dataset into an RDD
-    val numPartitions = 16
-    val data: RDD[Array[Double]] = sc.textFile(fileName, numPartitions)
-      .map(line => line.split(",").map(_.toDouble))
-    println(s"File $fileName successfully read into RDD.")
+          // Construct the file name based on the variables
+          val fileName = s"data/${distribution}_data_${dimensions}D_${samples}S.csv"
 
-    val numPartitions_test = data.getNumPartitions
-    println(s"Number of partitions in RDD: $numPartitions_test")
+          // Load dataset into an RDD
+          val numPartitions = 32
+          val data: RDD[Array[Double]] = sc.textFile(fileName, numPartitions)
+            .map(line => line.split(",").map(_.toDouble))
+          println(s"File $fileName successfully read into RDD.")
+
+          println(s"Number of partitions in RDD: ${data.getNumPartitions}")
+
+          //////////////////////////////////////////////////////////////
+
+          println("ALS implementation")
+          val startTimeALS = System.nanoTime()
+          val skylineALS = ALS_algorithm(data)
+          val countSkylineALS = countSkylinePoints(skylineALS)
+          val endTimeALS = System.nanoTime()
+          val estimationTimeALS = endTimeALS - startTimeALS
+          println(s"Count: ${countSkylineALS}, Time: ${estimationTimeALS / 1e9} seconds")
+          resultsList += Array("ALS", distribution, samples, dimensions, cores, estimationTimeALS / 1e9)
+          /////////////////////////////////////////////////////////////////
+
+          println("ALS with SFS implementation")
+          val startTimeALSSFS = System.nanoTime()
+          val skylineALSSFS = ALS_SFS_algorithm(data)
+          val countSkylineALSSFS = countSkylinePoints(skylineALSSFS)
+          val endTimeALSSFS = System.nanoTime()
+          val estimationTimeALSSFS = endTimeALSSFS - startTimeALSSFS
+          println(s"Count: ${countSkylineALSSFS}, Time: ${estimationTimeALSSFS / 1e9} seconds")
+          resultsList += Array("ALS_SFS", distribution, samples, dimensions, cores, estimationTimeALSSFS / 1e9)
+          /////////////////////////////////////////////////////////////////
+
+        }
+      }
+    }
+
+    // Path to your CSV file
+    val csvFilePath = "results.csv"
+
+    // Check if the file exists
+    val file = new File(csvFilePath)
+    val fileExists = file.exists()
+
+    // Function to write data to a CSV file
+    def writeToCsv(data: ListBuffer[Array[Any]], append: Boolean = false): Unit = {
+      val fileWriter = new FileWriter(csvFilePath, append)
+      val bufferedWriter = new BufferedWriter(fileWriter)
+      val printWriter = new PrintWriter(bufferedWriter)
+
+      data.foreach { row =>
+        printWriter.println(row.mkString(","))
+      }
+
+      // Close all the writers
+      printWriter.close()
+      bufferedWriter.close()
+      fileWriter.close()
+    }
 
 
-    // Use the distributed SFS algorithm
-    val startTimeSFS = System.nanoTime()
-    val skylineSFS = sfsAlgorithm(data)
-    val endTimeSFS = System.nanoTime()
-    val estimationTimeSFS =  endTimeSFS - startTimeSFS
+    // Append to CSV if it exists, otherwise create new
+    writeToCsv(resultsList, fileExists)
+    println("Done!")
 
-    println("SFS Done")
-
-    // Use the distributed ALS algorithm
-    val startTimeALS = System.nanoTime()
-    val skylineALS = alsAlgorithm(data)
-    val endTimeALS = System.nanoTime()
-    val estimationTimeALS =  endTimeALS - startTimeALS
-
-    println("ALS Done")
-
-    println("SFS implementation")
-    println(s"Count: ${skylineSFS.length}, Time: ${estimationTimeSFS / 1e9} seconds")
-
-    println("ALS implementation")
-    println(s"Count: ${skylineALS.length}, Time: ${estimationTimeALS / 1e9} seconds")
 
     // To prevent the application from exiting immediately
-    Thread.sleep(3600000) // Sleep for 1 hour (3600 seconds)
+    // Thread.sleep(3600000) // Sleep for 1 hour (3600 seconds)
 
     spark.stop() // Stop the Spark session
   }
