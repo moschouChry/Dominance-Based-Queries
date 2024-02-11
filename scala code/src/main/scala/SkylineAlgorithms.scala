@@ -1,6 +1,9 @@
+import scala.math._
+import org.apache.spark.Partitioner
 import org.apache.spark.rdd.RDD
 
 import java.io.{BufferedWriter, FileWriter}
+import java.nio.file.{Files, Paths}
 import scala.collection.mutable.ArrayBuffer
 import scala.util.control.Breaks
 
@@ -103,8 +106,46 @@ object SkylineAlgorithms {
   }
 
 
+  def cartesianToHyperspherical(point: Array[Double]): Array[Double] = {
+    val r = sqrt(point.map(x => x * x).sum)
+    val angles = new Array[Double](point.length - 1)
+
+    for (i <- 0 until point.length - 1) {
+      val partialSum = sqrt(point.drop(i).map(x => x * x).sum)
+      angles(i) = acos(point(i) / partialSum)
+    }
+
+    r +: angles // Return the radius followed by the angles
+  }
+
+  // Function to determine the partition
+  def determinePartition(point: Array[Double], numPartitions: Int, dimensions: Int): Int = {
+    // Composite score is the sum of all dimension values
+    val compositeScore = point.sum
+
+    // The range of the composite score is from 0 to the number of dimensions
+    val compositeScoreRange = dimensions.toDouble
+
+    // Calculate the partition size
+    val partitionSize = compositeScoreRange / numPartitions
+
+    // Determine the partition
+    (compositeScore / partitionSize).toInt
+  }
+
+  def partitionData(rdd: RDD[Array[Double]], numPartitions: Int): RDD[(Int, Array[Double])] = {
+    val hypersphericalRDD = rdd.map(cartesianToHyperspherical)
+
+    // Assign points to partitions based on angular coordinates
+    hypersphericalRDD.map(point => {
+      val partition = determinePartition(point, numPartitions,6)
+      (partition, point)
+    })
+  }
+
+
   // -------------------------------------------------------------------------------------------------------
-  def countSkylinePoints(finalSkyline: Iterator[Array[Double]],
+  def countSkylinePoints(finalSkyline: Iterator[Array[Double]], fileName: String,
                     printPoints: Boolean = false,
                     storePoints: Boolean = false): Int = {
 
@@ -122,15 +163,26 @@ object SkylineAlgorithms {
 
     // Optionally store the skyline points in a CSV file
     if (storePoints) {
-      val writer = new BufferedWriter(new FileWriter("skyline_points.csv"))
-      try {
-        skylinePoints.foreach { point =>
-          writer.write(point.mkString(", "))
-          writer.newLine()
+
+      val filePath = s"data/" + fileName + "_skyline.csv"
+
+      // Check if the file exists
+      if (Files.exists(Paths.get(filePath))) {
+        // File exists, skip storing
+        println(s"Skyline file for $filePath already exists. Skipping storing.")
+      } else {
+
+        val writer = new BufferedWriter(new FileWriter("data/" + fileName + "_skyline.csv"))
+        try {
+          skylinePoints.foreach { point =>
+            writer.write(point.mkString(", "))
+            writer.newLine()
+          }
+        } finally {
+          writer.close()
         }
-      } finally {
-        writer.close()
       }
+
     }
 
     // Return the count of skyline points
