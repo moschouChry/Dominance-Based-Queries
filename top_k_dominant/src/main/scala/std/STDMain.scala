@@ -8,16 +8,16 @@ import std.point.{Point, TopKResultPoint}
 import scala.collection.convert.ImplicitConversions.`collection asJava`
 
 object STDMain {
-  private val distributions: List[String] = List("correlated", "anticorrelated", "uniform", "normal")
-  private val coresList: List[Int] = List(2, 4, 8, 16)
-  private val kList: List[Int] = List(10, 25, 50)
+  private val distributions: List[String] = List("anticorrelated")
+  private val coresList: List[Int] = List(16)
+  private val kList: List[Int] = List(10)
 
   var dimensions: List[Int] = List()
   private var numSamplesList: List[Int] = List()
 
   if (sys.env("EXPERIMENT_TYPE") == "dimensions") {
     numSamplesList = List(1000000)
-    dimensions = List(2, 4, 6, 8)
+    dimensions = List(8)
   } else { // samples
     numSamplesList = List(100000, 1000000, 10000000)
     dimensions = List(6)
@@ -36,7 +36,7 @@ object STDMain {
 
                 println(s"###### ${distribution}_data_${dimension}D_${numSamples}S.csv K=$K CORES=$NUM_OF_CORES ######")
 
-                1.to(10).foreach(iteration => {
+                1.to(1).foreach(iteration => {
                   val startTime = System.nanoTime()
                   println(s"local[$NUM_OF_CORES]")
 
@@ -44,6 +44,8 @@ object STDMain {
                     .appName("Top-k dominating")
                     .master(s"local[$NUM_OF_CORES]")
                     .getOrCreate()
+
+                  spark.sparkContext.setLogLevel("WARN")
 
                   import spark.implicits._
                   val dataset = spark

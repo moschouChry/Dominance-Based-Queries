@@ -1,0 +1,168 @@
+###### anticorrelated_data_2D_1000000S.csv K=10 CORES=8 ######
+local[8]
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.apache.spark.unsafe.Platform (file:/home/apapadoi/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/spark/spark-unsafe_2.12/3.3.2/spark-unsafe_2.12-3.3.2.jar) to constructor java.nio.DirectByteBuffer(long,int)
+WARNING: Please consider reporting this to the maintainers of org.apache.spark.unsafe.Platform
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+TopKResultPoint(1,Point(Vector(0.36167321624774273, 0.3321692864883281)),872289)
+TopKResultPoint(2,Point(Vector(0.3576187193771015, 0.3503619322625397)),854912)
+TopKResultPoint(3,Point(Vector(0.3659136432554497, 0.3486587096182366)),846675)
+TopKResultPoint(4,Point(Vector(0.29891868374649627, 0.39057014516973065)),829155)
+TopKResultPoint(5,Point(Vector(0.38904661376884925, 0.34526158875097124)),814773)
+TopKResultPoint(6,Point(Vector(0.4017640413793683, 0.3302796394928774)),807894)
+TopKResultPoint(7,Point(Vector(0.3801035488790589, 0.36492875766513394)),800842)
+TopKResultPoint(8,Point(Vector(0.37340245859141696, 0.3740647652616856)),795221)
+TopKResultPoint(9,Point(Vector(0.4091340985419304, 0.3339158022952488)),788255)
+TopKResultPoint(10,Point(Vector(0.40357999037565867, 0.3474929739207355)),783647)
+Iteration: 1 Elapsed time: 30.934745475 seconds
+Mean execution time 3.0934745475
+###### anticorrelated_data_4D_1000000S.csv K=10 CORES=8 ######
+local[8]
+TopKResultPoint(1,Point(Vector(0.4322771443538765, 0.36166754793927935, 0.43644438496685045, 0.3644625131734336)),521835)
+TopKResultPoint(2,Point(Vector(0.34605151965519765, 0.42261866953692273, 0.3698010032115379, 0.43965196596537204)),509014)
+TopKResultPoint(3,Point(Vector(0.432486227132721, 0.39653128735795984, 0.4350149738941211, 0.34546631414235096)),486448)
+TopKResultPoint(4,Point(Vector(0.3893598980999167, 0.39383793310299964, 0.4464366449778756, 0.38843373760553884)),470729)
+TopKResultPoint(5,Point(Vector(0.3551332549104025, 0.4091378999864944, 0.3942290242200648, 0.44775691883006746)),465437)
+TopKResultPoint(6,Point(Vector(0.3779912517611206, 0.42513545093368454, 0.42469192947680773, 0.39259936450513694)),465404)
+TopKResultPoint(7,Point(Vector(0.40968246736243674, 0.423877668281186, 0.3400287719181319, 0.42655206584355687)),465255)
+TopKResultPoint(8,Point(Vector(0.4069375800509113, 0.37005976437849036, 0.46102636676190867, 0.37838337195838734)),464570)
+TopKResultPoint(9,Point(Vector(0.38990318754475944, 0.36272704879589845, 0.4204610100131429, 0.4326775355445267)),462677)
+TopKResultPoint(10,Point(Vector(0.42741728061347417, 0.3396872702612842, 0.4766736697737959, 0.3576810699250763)),459772)
+Iteration: 1 Elapsed time: 347.099410055 seconds
+Mean execution time 34.7099410055
+###### anticorrelated_data_6D_1000000S.csv K=10 CORES=8 ######
+local[8]
+TopKResultPoint(1,Point(Vector(0.48064690279380934, 0.4559857019105218, 0.3882044305867948, 0.42459125620821453, 0.3642409135034811, 0.466453781053262)),273049)
+TopKResultPoint(2,Point(Vector(0.4866579928711224, 0.36068466552557316, 0.4097881280331411, 0.4285281796177611, 0.4837040117578893, 0.42708679093175717)),263105)
+TopKResultPoint(3,Point(Vector(0.41499801720672114, 0.472556615152031, 0.33932539742727397, 0.4915786005462911, 0.2891192726037211, 0.5392877611581796)),253885)
+TopKResultPoint(4,Point(Vector(0.5311263212706938, 0.37983196748364656, 0.40489322871090333, 0.440800970967884, 0.43714548110068535, 0.39011903242217877)),252987)
+TopKResultPoint(5,Point(Vector(0.5072005839803959, 0.3964206241342957, 0.43198213435541605, 0.44644301506657547, 0.4189180136384247, 0.44264549645671103)),240647)
+TopKResultPoint(6,Point(Vector(0.521178780041505, 0.3647329885158162, 0.4506149990209324, 0.42610209912933295, 0.4624260231234993, 0.4145170529123986)),234331)
+TopKResultPoint(7,Point(Vector(0.5241791124272028, 0.2898762117656777, 0.47713564845591655, 0.40393952657509224, 0.4584496277833897, 0.4187365728816175)),233820)
+TopKResultPoint(8,Point(Vector(0.47242759821250424, 0.40020948785421384, 0.4660628853303516, 0.45065433651138104, 0.3828168944830282, 0.4319177386005526)),228796)
+TopKResultPoint(9,Point(Vector(0.44462431122989826, 0.42606808198036106, 0.3866581198029782, 0.5063097084745488, 0.3906000571337848, 0.49488561869653047)),227085)
+TopKResultPoint(10,Point(Vector(0.4474826800912666, 0.414868323969417, 0.3713407475844812, 0.47477122783209624, 0.4554939445337084, 0.47490296730872894)),226466)
+Iteration: 1 Elapsed time: 2374.432681145 seconds
+Mean execution time 237.4432681145
+###### anticorrelated_data_8D_1000000S.csv K=10 CORES=8 ######
+local[8]
+TopKResultPoint(1,Point(Vector(0.4321711431308779, 0.4413285173837517, 0.3968288208585835, 0.44664213701857214, 0.45693689711113783, 0.46258772681551463, 0.36113208824516807, 0.40499804695533265)),169822)
+TopKResultPoint(2,Point(Vector(0.45331778641811327, 0.4354892045655048, 0.41313895937806155, 0.410561787582175, 0.5021232304002243, 0.39103748817178907, 0.3774475792508864, 0.4047627381624346)),146586)
+TopKResultPoint(3,Point(Vector(0.44459440417440077, 0.4540258648776974, 0.3848970738695858, 0.417482452558047, 0.4629716565191743, 0.457048923076494, 0.4272194903910408, 0.4074789094904573)),136423)
+TopKResultPoint(4,Point(Vector(0.40608159113813325, 0.44344068288773475, 0.40147943102024947, 0.4479657726409686, 0.4892843255954125, 0.4039907570706207, 0.43884190108916077, 0.3822438949770216)),123546)
+TopKResultPoint(5,Point(Vector(0.371271304648278, 0.4581451530061508, 0.3960043048375807, 0.42361103985508003, 0.43400255165027285, 0.48326388473767823, 0.40031061136598967, 0.4766340604293443)),122534)
+TopKResultPoint(6,Point(Vector(0.3986885172879779, 0.4073531029968374, 0.47239815093760035, 0.3382236249655654, 0.4452546773457006, 0.406553391173197, 0.49137494271886967, 0.3968879521332644)),118169)
+TopKResultPoint(7,Point(Vector(0.3701815974604695, 0.38318745330468484, 0.4267581938859188, 0.4701493257239493, 0.43873852394533996, 0.48259751163409215, 0.41752225442982194, 0.42350489633091504)),117643)
+TopKResultPoint(8,Point(Vector(0.5794495262688427, 0.33336759611289557, 0.4530610982157068, 0.32901434286322034, 0.5266935849713478, 0.34473275423414773, 0.4752355212876925, 0.33052290260722467)),114142)
+TopKResultPoint(9,Point(Vector(0.38735162212769, 0.5149013654677171, 0.3621494346900757, 0.47604833222916815, 0.4034436714660638, 0.44849014346339533, 0.3692419677599172, 0.47094710047090044)),112266)
+TopKResultPoint(10,Point(Vector(0.5341666106248911, 0.35200650488137797, 0.494161622032586, 0.319306747527226, 0.5101878486435927, 0.3885720557540024, 0.5122958294939353, 0.3035703268299048)),111419)
+Iteration: 1 Elapsed time: 10559.527013382 seconds
+Mean execution time 1055.9527013381999
+###### anticorrelated_data_2D_1000000S.csv K=10 CORES=16 ######
+local[16]
+TopKResultPoint(1,Point(Vector(0.36167321624774273, 0.3321692864883281)),872289)
+TopKResultPoint(2,Point(Vector(0.3576187193771015, 0.3503619322625397)),854912)
+TopKResultPoint(3,Point(Vector(0.3659136432554497, 0.3486587096182366)),846675)
+TopKResultPoint(4,Point(Vector(0.29891868374649627, 0.39057014516973065)),829155)
+TopKResultPoint(5,Point(Vector(0.38904661376884925, 0.34526158875097124)),814773)
+TopKResultPoint(6,Point(Vector(0.4017640413793683, 0.3302796394928774)),807894)
+TopKResultPoint(7,Point(Vector(0.3801035488790589, 0.36492875766513394)),800842)
+TopKResultPoint(8,Point(Vector(0.37340245859141696, 0.3740647652616856)),795221)
+TopKResultPoint(9,Point(Vector(0.4091340985419304, 0.3339158022952488)),788255)
+TopKResultPoint(10,Point(Vector(0.40357999037565867, 0.3474929739207355)),783647)
+Iteration: 1 Elapsed time: 19.890737714 seconds
+Mean execution time 1.9890737714
+###### anticorrelated_data_4D_1000000S.csv K=10 CORES=16 ######
+local[16]
+TopKResultPoint(1,Point(Vector(0.4322771443538765, 0.36166754793927935, 0.43644438496685045, 0.3644625131734336)),521835)
+TopKResultPoint(2,Point(Vector(0.34605151965519765, 0.42261866953692273, 0.3698010032115379, 0.43965196596537204)),509014)
+TopKResultPoint(3,Point(Vector(0.432486227132721, 0.39653128735795984, 0.4350149738941211, 0.34546631414235096)),486448)
+TopKResultPoint(4,Point(Vector(0.3893598980999167, 0.39383793310299964, 0.4464366449778756, 0.38843373760553884)),470729)
+TopKResultPoint(5,Point(Vector(0.3551332549104025, 0.4091378999864944, 0.3942290242200648, 0.44775691883006746)),465437)
+TopKResultPoint(6,Point(Vector(0.3779912517611206, 0.42513545093368454, 0.42469192947680773, 0.39259936450513694)),465404)
+TopKResultPoint(7,Point(Vector(0.40968246736243674, 0.423877668281186, 0.3400287719181319, 0.42655206584355687)),465255)
+TopKResultPoint(8,Point(Vector(0.4069375800509113, 0.37005976437849036, 0.46102636676190867, 0.37838337195838734)),464570)
+TopKResultPoint(9,Point(Vector(0.38990318754475944, 0.36272704879589845, 0.4204610100131429, 0.4326775355445267)),462677)
+TopKResultPoint(10,Point(Vector(0.42741728061347417, 0.3396872702612842, 0.4766736697737959, 0.3576810699250763)),459772)
+Iteration: 1 Elapsed time: 212.665897846 seconds
+Mean execution time 21.2665897846
+###### anticorrelated_data_6D_1000000S.csv K=10 CORES=16 ######
+local[16]
+TopKResultPoint(1,Point(Vector(0.48064690279380934, 0.4559857019105218, 0.3882044305867948, 0.42459125620821453, 0.3642409135034811, 0.466453781053262)),273049)
+TopKResultPoint(2,Point(Vector(0.4866579928711224, 0.36068466552557316, 0.4097881280331411, 0.4285281796177611, 0.4837040117578893, 0.42708679093175717)),263105)
+TopKResultPoint(3,Point(Vector(0.41499801720672114, 0.472556615152031, 0.33932539742727397, 0.4915786005462911, 0.2891192726037211, 0.5392877611581796)),253885)
+TopKResultPoint(4,Point(Vector(0.5311263212706938, 0.37983196748364656, 0.40489322871090333, 0.440800970967884, 0.43714548110068535, 0.39011903242217877)),252987)
+TopKResultPoint(5,Point(Vector(0.5072005839803959, 0.3964206241342957, 0.43198213435541605, 0.44644301506657547, 0.4189180136384247, 0.44264549645671103)),240647)
+TopKResultPoint(6,Point(Vector(0.521178780041505, 0.3647329885158162, 0.4506149990209324, 0.42610209912933295, 0.4624260231234993, 0.4145170529123986)),234331)
+TopKResultPoint(7,Point(Vector(0.5241791124272028, 0.2898762117656777, 0.47713564845591655, 0.40393952657509224, 0.4584496277833897, 0.4187365728816175)),233820)
+TopKResultPoint(8,Point(Vector(0.47242759821250424, 0.40020948785421384, 0.4660628853303516, 0.45065433651138104, 0.3828168944830282, 0.4319177386005526)),228796)
+TopKResultPoint(9,Point(Vector(0.44462431122989826, 0.42606808198036106, 0.3866581198029782, 0.5063097084745488, 0.3906000571337848, 0.49488561869653047)),227085)
+TopKResultPoint(10,Point(Vector(0.4474826800912666, 0.414868323969417, 0.3713407475844812, 0.47477122783209624, 0.4554939445337084, 0.47490296730872894)),226466)
+Iteration: 1 Elapsed time: 1743.748081105 seconds
+Mean execution time 174.3748081105
+###### anticorrelated_data_8D_1000000S.csv K=10 CORES=16 ######
+local[16]
+Exception in thread "main" org.apache.spark.SparkException: Job 4 cancelled because SparkContext was shut down
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$cleanUpAfterSchedulerStop$1(DAGScheduler.scala:1188)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$cleanUpAfterSchedulerStop$1$adapted(DAGScheduler.scala:1186)
+	at scala.collection.mutable.HashSet.foreach(HashSet.scala:79)
+	at org.apache.spark.scheduler.DAGScheduler.cleanUpAfterSchedulerStop(DAGScheduler.scala:1186)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onStop(DAGScheduler.scala:2887)
+	at org.apache.spark.util.EventLoop.stop(EventLoop.scala:84)
+	at org.apache.spark.scheduler.DAGScheduler.stop(DAGScheduler.scala:2784)
+	at org.apache.spark.SparkContext.$anonfun$stop$11(SparkContext.scala:2105)
+	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1484)
+	at org.apache.spark.SparkContext.stop(SparkContext.scala:2105)
+	at org.apache.spark.SparkContext.$anonfun$new$35(SparkContext.scala:670)
+	at org.apache.spark.util.SparkShutdownHook.run(ShutdownHookManager.scala:214)
+	at org.apache.spark.util.SparkShutdownHookManager.$anonfun$runAll$2(ShutdownHookManager.scala:188)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:2066)
+	at org.apache.spark.util.SparkShutdownHookManager.$anonfun$runAll$1(ShutdownHookManager.scala:188)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at scala.util.Try$.apply(Try.scala:213)
+	at org.apache.spark.util.SparkShutdownHookManager.runAll(ShutdownHookManager.scala:188)
+	at org.apache.spark.util.SparkShutdownHookManager$$anon$2.run(ShutdownHookManager.scala:178)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+	at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:952)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2238)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2333)
+	at org.apache.spark.rdd.RDD.$anonfun$reduce$1(RDD.scala:1111)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+	at org.apache.spark.rdd.RDD.withScope(RDD.scala:406)
+	at org.apache.spark.rdd.RDD.reduce(RDD.scala:1093)
+	at org.apache.spark.sql.Dataset.$anonfun$reduce$1(Dataset.scala:1803)
+	at org.apache.spark.sql.Dataset.$anonfun$withNewRDDExecutionId$1(Dataset.scala:3845)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$6(SQLExecution.scala:109)
+	at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:169)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$1(SQLExecution.scala:95)
+	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:779)
+	at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:64)
+	at org.apache.spark.sql.Dataset.withNewRDDExecutionId(Dataset.scala:3843)
+	at org.apache.spark.sql.Dataset.reduce(Dataset.scala:1803)
+	at std.skyline.SkylineCalculator.BlockNestedLoop(SkylineCalculator.scala:84)
+	at std.STD.apply(STD.scala:14)
+	at std.STDMain$.$anonfun$main$6(STDMain.scala:64)
+	at scala.collection.immutable.Range.foreach$mVc$sp(Range.scala:158)
+	at std.STDMain$.$anonfun$main$5(STDMain.scala:39)
+	at std.STDMain$.$anonfun$main$5$adapted(STDMain.scala:33)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at std.STDMain$.$anonfun$main$4(STDMain.scala:33)
+	at std.STDMain$.$anonfun$main$4$adapted(STDMain.scala:32)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at std.STDMain$.$anonfun$main$3(STDMain.scala:32)
+	at std.STDMain$.$anonfun$main$3$adapted(STDMain.scala:31)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at std.STDMain$.$anonfun$main$2(STDMain.scala:31)
+	at std.STDMain$.$anonfun$main$2$adapted(STDMain.scala:30)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at std.STDMain$.$anonfun$main$1(STDMain.scala:30)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at std.STDMain$.main(STDMain.scala:29)
+	at std.STDMain.main(STDMain.scala)

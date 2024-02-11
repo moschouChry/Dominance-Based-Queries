@@ -57,14 +57,14 @@ class SkylineCalculator(spark: SparkSession, partitioner: AnglePartitioner) exte
 
       val secondSkylineFinal: Vector[Point] = firstSkyline.foldLeft(secondSkyline) {
         (acc: Vector[Point], v1_point: Point) => {
-          // Keep all Points that aren not dominated by first skyline
+          // Keep all points that are not dominated by first skyline
           acc.filter(v2_point => !v1_point.dominates(v2_point))
         }
       }
 
       val firstSkylineFinal: Vector[Point] = secondSkyline.foldLeft(firstSkyline) {
         (acc: Vector[Point], v2_point: Point) => {
-          // Keep all Points that aren not dominated by second skyline
+          // Keep all points that are not dominated by second skyline
           acc.filter(v1_point => !v2_point.dominates(v1_point))
         }
       }

@@ -17,6 +17,13 @@ class STD(ss: SparkSession, k: Int) extends Serializable {
 
     val PQ = new mutable.PriorityQueue[PointWithDominanceScore]()
     PQ ++= skylineWithScore
+    if(sys.env("SKYLINE_DOMINATING").equals("TRUE")) {
+      return PQ.take(k).foldLeft(Vector[TopKResultPoint]())(
+        (topKPoints: Vector[TopKResultPoint], curTopK: PointWithDominanceScore) => {
+          topKPoints :+ TopKResultPoint(k, curTopK.point, curTopK.score)
+        }
+      )
+    }
 
     var currentDataset: Dataset[Point] = dataset
 
