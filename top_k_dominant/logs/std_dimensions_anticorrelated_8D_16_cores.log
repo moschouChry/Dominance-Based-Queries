@@ -1,0 +1,48 @@
+###### anticorrelated_data_8D_1000000S.csv K=10 CORES=16 ######
+local[16]
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+24/02/11 01:37:29 WARN Utils: Your hostname, numenor resolves to a loopback address: 127.0.1.1; using 155.207.131.39 instead (on interface enp4s0)
+24/02/11 01:37:29 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.apache.spark.unsafe.Platform (file:/home/apapadoi/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/spark/spark-unsafe_2.12/2.4.3/spark-unsafe_2.12-2.4.3.jar) to method java.nio.Bits.unaligned()
+WARNING: Please consider reporting this to the maintainers of org.apache.spark.unsafe.Platform
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+24/02/11 01:37:29 INFO SparkContext: Running Spark version 2.4.3
+24/02/11 01:37:29 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+24/02/11 01:37:29 INFO SparkContext: Submitted application: Top-k dominating
+24/02/11 01:37:29 INFO SecurityManager: Changing view acls to: apapadoi
+24/02/11 01:37:29 INFO SecurityManager: Changing modify acls to: apapadoi
+24/02/11 01:37:29 INFO SecurityManager: Changing view acls groups to: 
+24/02/11 01:37:29 INFO SecurityManager: Changing modify acls groups to: 
+24/02/11 01:37:29 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(apapadoi); groups with view permissions: Set(); users  with modify permissions: Set(apapadoi); groups with modify permissions: Set()
+24/02/11 01:37:29 INFO Utils: Successfully started service 'sparkDriver' on port 35811.
+24/02/11 01:37:29 INFO SparkEnv: Registering MapOutputTracker
+24/02/11 01:37:29 INFO SparkEnv: Registering BlockManagerMaster
+24/02/11 01:37:29 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+24/02/11 01:37:29 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+24/02/11 01:37:29 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-36d0cbe0-42d1-4e4d-8dbe-3cd5595e99b0
+24/02/11 01:37:30 INFO MemoryStore: MemoryStore started with capacity 9.2 GB
+24/02/11 01:37:30 INFO SparkEnv: Registering OutputCommitCoordinator
+24/02/11 01:37:30 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+24/02/11 01:37:30 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://chribell.csd.auth.gr:4040
+24/02/11 01:37:30 INFO Executor: Starting executor ID driver on host localhost
+24/02/11 01:37:30 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 38797.
+24/02/11 01:37:30 INFO NettyBlockTransferService: Server created on chribell.csd.auth.gr:38797
+24/02/11 01:37:30 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+24/02/11 01:37:30 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, chribell.csd.auth.gr, 38797, None)
+24/02/11 01:37:30 INFO BlockManagerMasterEndpoint: Registering block manager chribell.csd.auth.gr:38797 with 9.2 GB RAM, BlockManagerId(driver, chribell.csd.auth.gr, 38797, None)
+24/02/11 01:37:30 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, chribell.csd.auth.gr, 38797, None)
+24/02/11 01:37:30 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, chribell.csd.auth.gr, 38797, None)
+TopKResultPoint(1,Point(Vector(0.4321711431308779, 0.4413285173837517, 0.3968288208585835, 0.44664213701857214, 0.45693689711113783, 0.46258772681551463, 0.36113208824516807, 0.40499804695533265)),169822)
+TopKResultPoint(2,Point(Vector(0.45331778641811327, 0.4354892045655048, 0.41313895937806155, 0.410561787582175, 0.5021232304002243, 0.39103748817178907, 0.3774475792508864, 0.4047627381624346)),146586)
+TopKResultPoint(3,Point(Vector(0.44459440417440077, 0.4540258648776974, 0.3848970738695858, 0.417482452558047, 0.4629716565191743, 0.457048923076494, 0.4272194903910408, 0.4074789094904573)),136423)
+TopKResultPoint(4,Point(Vector(0.40608159113813325, 0.44344068288773475, 0.40147943102024947, 0.4479657726409686, 0.4892843255954125, 0.4039907570706207, 0.43884190108916077, 0.3822438949770216)),123546)
+TopKResultPoint(5,Point(Vector(0.371271304648278, 0.4581451530061508, 0.3960043048375807, 0.42361103985508003, 0.43400255165027285, 0.48326388473767823, 0.40031061136598967, 0.4766340604293443)),122534)
+TopKResultPoint(6,Point(Vector(0.3986885172879779, 0.4073531029968374, 0.47239815093760035, 0.3382236249655654, 0.4452546773457006, 0.406553391173197, 0.49137494271886967, 0.3968879521332644)),118169)
+TopKResultPoint(7,Point(Vector(0.3701815974604695, 0.38318745330468484, 0.4267581938859188, 0.4701493257239493, 0.43873852394533996, 0.48259751163409215, 0.41752225442982194, 0.42350489633091504)),117643)
+TopKResultPoint(8,Point(Vector(0.5794495262688427, 0.33336759611289557, 0.4530610982157068, 0.32901434286322034, 0.5266935849713478, 0.34473275423414773, 0.4752355212876925, 0.33052290260722467)),114142)
+TopKResultPoint(9,Point(Vector(0.38735162212769, 0.5149013654677171, 0.3621494346900757, 0.47604833222916815, 0.4034436714660638, 0.44849014346339533, 0.3692419677599172, 0.47094710047090044)),112266)
+TopKResultPoint(10,Point(Vector(0.5341666106248911, 0.35200650488137797, 0.494161622032586, 0.319306747527226, 0.5101878486435927, 0.3885720557540024, 0.5122958294939353, 0.3035703268299048)),111419)
+Iteration: 1 Elapsed time: 8388.871734765 seconds
+Mean execution time 838.8871734765
